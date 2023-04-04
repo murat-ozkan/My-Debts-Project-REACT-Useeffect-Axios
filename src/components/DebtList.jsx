@@ -32,12 +32,12 @@ const DebtList = ({ debts }) => {
         </thead>
         <tbody>
           {debts?.map((item) => {
-            const { id, towhom, howmuch } = item;
+            const { id, toWhom, howMuch } = item;
             return (
               <tr key={id}>
                 <th>{id}</th>
-                <td>{towhom}</td>
-                <td>{howmuch}</td>
+                <td>{toWhom}</td>
+                <td>{howMuch}</td>
                 <td className="text-center text-nowrap">
                   <FaEdit
                     size={30}
