@@ -16,7 +16,7 @@ const Home = () => {
     }
   };
 
-  //! componentDidMount yaptım. İlk renderdan sonra istek attı. Sonra atmayacak.
+  //! componentDidMount. İlk renderdan sonra istek attı. Sonra atmayacak.
   useEffect(() => {
     getDebts();
   }, []);

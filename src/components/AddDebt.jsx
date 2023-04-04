@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 
-const AddDebt = (getDebts) => {
+const AddDebt = ({ getDebts }) => {
   const [toWhom, setToWhom] = useState("");
   const [howMuch, setHowMuch] = useState("");
   const BASE_URL = "https://6429dbc900dfa3b5473ba802.mockapi.io/mydebts/";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newDebt = { toWhom, howMuch }; //* create object to post
     // const newDebt = { th: toWhom, hm: howMuch }; //* can be different name
@@ -18,10 +18,10 @@ const AddDebt = (getDebts) => {
   const postData = async (newDebt) => {
     try {
       await axios.post(BASE_URL, newDebt);
+      await getDebts(); //! Call this func to get new dataset from backend
     } catch (error) {
       console.log(error);
     }
-    getDebts(); //! Call this func to get new dataset from backend
   };
 
   return (
