@@ -1,21 +1,18 @@
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
+import axios from "axios";
 // import { useState } from "react";
 
-const DebtList = ({ debts }) => {
-  // const [totalDebt, setTotalDebt] = useState(0);
-  // const debts = [
-  //   {
-  //     id: 1,
-  //     toWhom: "Clarus Hemingway",
-  //     howMuch: 3000,
-  //   },
-  //   {
-  //     id: 2,
-  //     toWhom: "Thomas React",
-  //     howMuch: 1200,
-  //   },
-  // ];
+const DebtList = ({ debts, getDebts }) => {
+  const BASE_URL = "https://6429dbc900dfa3b5473ba802.mockapi.io/mydebts";
+  const deleteDebt = async (id) => {
+    try {
+      await axios.delete(`${BASE_URL}/${id}/`);
+    } catch (error) {
+      console.log(error);
+    }
+    getDebts();
+  };
 
   return (
     <div className="container mt-4">
@@ -47,7 +44,8 @@ const DebtList = ({ debts }) => {
                   <AiFillDelete
                     size={30}
                     type="button"
-                    className="text-danger "
+                    className="text-danger"
+                    onClick={() => deleteDebt(id)}
                   />
                 </td>
               </tr>
@@ -66,3 +64,17 @@ const DebtList = ({ debts }) => {
 };
 
 export default DebtList;
+
+// const [totalDebt, setTotalDebt] = useState(0);
+// const debts = [
+//   {
+//     id: 1,
+//     toWhom: "Clarus Hemingway",
+//     howMuch: 3000,
+//   },
+//   {
+//     id: 2,
+//     toWhom: "Thomas React",
+//     howMuch: 1200,
+//   },
+// ];
