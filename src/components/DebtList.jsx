@@ -1,6 +1,7 @@
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
+import Modal from "./Modal";
 // import { useState } from "react";
 
 const DebtList = ({ debts, getDebts }) => {
@@ -49,6 +50,8 @@ const DebtList = ({ debts, getDebts }) => {
                     size={30}
                     type="button"
                     className="me-2 text-warning"
+                    data-toggle="modal"
+                    data-target="#edit-debt"
                     onClick={() =>
                       editDebts({
                         toWhom: "hassan",
@@ -75,6 +78,7 @@ const DebtList = ({ debts, getDebts }) => {
           })}
         </tfoot> */}
       </table>
+      <Modal />
     </div>
   );
 };
