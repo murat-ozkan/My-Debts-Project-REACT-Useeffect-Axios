@@ -5,6 +5,7 @@ import axios from "axios";
 
 const DebtList = ({ debts, getDebts }) => {
   const BASE_URL = "https://6429dbc900dfa3b5473ba802.mockapi.io/mydebts";
+
   const deleteDebt = async (id) => {
     try {
       await axios.delete(`${BASE_URL}/${id}/`);
@@ -14,6 +15,14 @@ const DebtList = ({ debts, getDebts }) => {
     getDebts();
   };
 
+  const editDebts = async ({ id, toWhom, howMuch }) => {
+    try {
+      await axios.put(`${BASE_URL}/${id}/`, { toWhom, howMuch });
+    } catch (error) {
+      console.log(error);
+    }
+    getDebts();
+  };
   return (
     <div className="container mt-4">
       <table className="table table-striped">
@@ -40,6 +49,13 @@ const DebtList = ({ debts, getDebts }) => {
                     size={30}
                     type="button"
                     className="me-2 text-warning"
+                    onClick={() =>
+                      editDebts({
+                        toWhom: "hassan",
+                        howMuch: "158",
+                        id: "20",
+                      })
+                    }
                   />
                   <AiFillDelete
                     size={30}
