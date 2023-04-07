@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import AddDebt from "../components/AddDebt";
 import DebtList from "../components/DebtList";
+import EditDept from "../components/EditDebt";
+import "./Home.css";
 
 const Home = () => {
   const [debts, setDebts] = useState([]);
@@ -25,6 +27,7 @@ const Home = () => {
     <>
       <AddDebt getDebts={getDebts} />
       <DebtList getDebts={getDebts} debts={debts} />
+      <EditDept />
     </>
   );
 };

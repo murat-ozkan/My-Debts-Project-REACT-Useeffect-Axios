@@ -1,7 +1,7 @@
 const EditDept = () => {
   return (
     <>
-      <div className="modal" tabIndex={-1} role="dialog" id="#editDebt">
+      <div className="modal" tabIndex={-1} role="dialog" id="editDebt">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">

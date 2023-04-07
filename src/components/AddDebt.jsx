@@ -26,31 +26,33 @@ const AddDebt = ({ getDebts }) => {
 
   return (
     <div className="container text-center mt-4">
-      <h1 className="display-6 text-primary mb-4">Add Your Debt</h1>
+      <h1 className="display-6 text-danger font-weight-bold mb-4">Add Your Debt</h1>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <input
-            type="text"
-            className="form-control"
-            id="toWhom"
-            placeholder="Who do you owe?"
-            value={toWhom}
-            onChange={(e) => setToWhom(e.target.value)}
-            required
-          />
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ width: "48%" }}>
+            <input
+              type="text"
+              className="form-control"
+              id="toWhom"
+              placeholder="Who do you owe?"
+              value={toWhom}
+              onChange={(e) => setToWhom(e.target.value)}
+              required
+            />
+          </div>
+          <div style={{ width: "48%" }}>
+            <input
+              type="number"
+              className="form-control"
+              id="howMuch"
+              placeholder="How much do you owe?"
+              value={howMuch}
+              onChange={(e) => setHowMuch(e.target.value)}
+              required
+            />
+          </div>
         </div>
-        <div className="mb-3">
-          <input
-            type="number"
-            className="form-control"
-            id="howMuch"
-            placeholder="How much do you owe?"
-            value={howMuch}
-            onChange={(e) => setHowMuch(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-danger mb-4">
+        <button type="submit" className="btn btn-danger mb-2 my-4">
           Add to the Debts
         </button>
       </form>

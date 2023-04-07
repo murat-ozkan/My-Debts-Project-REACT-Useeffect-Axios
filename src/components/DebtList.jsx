@@ -2,7 +2,6 @@ import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
 import EditDept from "./EditDebt";
-// import { useState } from "react";
 
 const DebtList = ({ debts, getDebts }) => {
   const BASE_URL = "https://6429dbc900dfa3b5473ba802.mockapi.io/mydebts";
@@ -16,23 +15,25 @@ const DebtList = ({ debts, getDebts }) => {
     getDebts();
   };
 
-  // const editDebts = async ({ id, toWhom, howMuch }) => {
-  //   try {
-  //     await axios.put(`${BASE_URL}/${id}/`, { toWhom, howMuch });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   getDebts();
-  // };
+  const totalDebt = debts.reduce((acc, curr) => acc + Number(curr.howMuch), 0);
+  //! The reduce function takes an accumulator (acc) and the current item (curr)
+  //! and adds the howMuch value of the current item to the accumulator.
+
   return (
     <div className="container mt-4">
       <table className="table table-striped">
         <thead>
           <tr>
-            <th scope="col">#No</th>
-            <th scope="col">To Whom</th>
-            <th scope="col">How Much</th>
-            <th scope="col" className="text-center">
+            <th scope="col" className="text-center text-warning">
+              #No
+            </th>
+            <th scope="col" className="text-center text-warning">
+              To Whom
+            </th>
+            <th scope="col" className="text-center text-warning">
+              How Much{" "}
+            </th>
+            <th scope="col" className="text-center text-warning">
               Edit
             </th>
           </tr>
@@ -42,28 +43,23 @@ const DebtList = ({ debts, getDebts }) => {
             const { id, toWhom, howMuch } = item;
             return (
               <tr key={id}>
-                <th>{id}</th>
-                <td>{toWhom}</td>
-                <td>{howMuch}</td>
-                <td className="text-center text-nowrap">
+                <th className="text-center text-white">{id}</th>
+                <td className="text-center text-white">{toWhom}</td>
+                <td className="text-center text-white">
+                  ₺{howMuch.toLocaleString()}
+                </td>
+                <td className="text-center text-nowrap text-white">
                   <FaEdit
                     size={30}
                     type="button"
                     className="me-2 text-warning"
                     data-toggle="modal"
                     data-target="#editDebt"
-                    // onClick={() =>
-                    //   editDebts({
-                    //     toWhom: "hassan",
-                    //     howMuch: "158",
-                    //     id: "20",
-                    //   })
-                    // }
                   />
                   <AiFillDelete
                     size={30}
                     type="button"
-                    className="text-danger"
+                    className="text-danger "
                     onClick={() => deleteDebt(id)}
                   />
                 </td>
@@ -71,12 +67,22 @@ const DebtList = ({ debts, getDebts }) => {
             );
           })}
         </tbody>
-        {/* <tfoot>
-          {debts?.map((item) => {
-            console.log(item);
-            return <td>{item.howMuch}</td>;
-          })}
-        </tfoot> */}
+        <tfoot>
+          <tr>
+            <td
+              colSpan="2"
+              className="text-center text-danger"
+              style={{ fontSize: "1.2em" }}
+            >
+              <b>Total Debt:</b>
+            </td>
+
+            <td className="text-center text-danger">
+              <b>₺{totalDebt.toLocaleString()}</b>
+            </td>
+            <td></td>
+          </tr>
+        </tfoot>
       </table>
       <EditDept />
     </div>
@@ -84,17 +90,3 @@ const DebtList = ({ debts, getDebts }) => {
 };
 
 export default DebtList;
-
-// const [totalDebt, setTotalDebt] = useState(0);
-// const debts = [
-//   {
-//     id: 1,
-//     toWhom: "Clarus Hemingway",
-//     howMuch: 3000,
-//   },
-//   {
-//     id: 2,
-//     toWhom: "Thomas React",
-//     howMuch: 1200,
-//   },
-// ];
