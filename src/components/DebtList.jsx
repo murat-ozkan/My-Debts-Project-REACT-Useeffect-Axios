@@ -1,7 +1,7 @@
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
-import Modal from "./Modal";
+import EditDept from "./EditDebt";
 // import { useState } from "react";
 
 const DebtList = ({ debts, getDebts }) => {
@@ -16,14 +16,14 @@ const DebtList = ({ debts, getDebts }) => {
     getDebts();
   };
 
-  const editDebts = async ({ id, toWhom, howMuch }) => {
-    try {
-      await axios.put(`${BASE_URL}/${id}/`, { toWhom, howMuch });
-    } catch (error) {
-      console.log(error);
-    }
-    getDebts();
-  };
+  // const editDebts = async ({ id, toWhom, howMuch }) => {
+  //   try {
+  //     await axios.put(`${BASE_URL}/${id}/`, { toWhom, howMuch });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   getDebts();
+  // };
   return (
     <div className="container mt-4">
       <table className="table table-striped">
@@ -51,14 +51,14 @@ const DebtList = ({ debts, getDebts }) => {
                     type="button"
                     className="me-2 text-warning"
                     data-toggle="modal"
-                    data-target="#edit-debt"
-                    onClick={() =>
-                      editDebts({
-                        toWhom: "hassan",
-                        howMuch: "158",
-                        id: "20",
-                      })
-                    }
+                    data-target="#editDebt"
+                    // onClick={() =>
+                    //   editDebts({
+                    //     toWhom: "hassan",
+                    //     howMuch: "158",
+                    //     id: "20",
+                    //   })
+                    // }
                   />
                   <AiFillDelete
                     size={30}
@@ -78,7 +78,7 @@ const DebtList = ({ debts, getDebts }) => {
           })}
         </tfoot> */}
       </table>
-      <Modal />
+      <EditDept />
     </div>
   );
 };

@@ -1,7 +1,7 @@
-const Modal = () => {
+const EditDept = () => {
   return (
     <>
-      <div className="modal" tabIndex={-1} role="dialog" id="#edit-debt">
+      <div className="modal" tabIndex={-1} role="dialog" id="#editDebt">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -37,4 +37,4 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+export default EditDept;
