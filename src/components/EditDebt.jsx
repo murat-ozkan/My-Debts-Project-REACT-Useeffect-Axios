@@ -6,12 +6,14 @@ const EditDept = ({ editingDebt }) => {
 
   const [toWhom, setToWhom] = useState("");
   const [howMuch, setHowMuch] = useState("");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     if (editingDebt) {
       console.log(editingDebt.toWhom);
       setToWhom(editingDebt.toWhom);
       setHowMuch(editingDebt.howMuch);
+      setDate(editingDebt.date);
     }
   }, [editingDebt]);
 
@@ -23,6 +25,10 @@ const EditDept = ({ editingDebt }) => {
     setHowMuch(event.target.value);
   };
 
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -30,11 +36,13 @@ const EditDept = ({ editingDebt }) => {
         await axios.put(`${BASE_URL}/${editingDebt.id}`, {
           toWhom,
           howMuch,
+          date,
         });
       } else {
         await axios.post(BASE_URL, {
           toWhom,
           howMuch,
+          date,
         });
       }
     } catch (error) {
@@ -82,6 +90,21 @@ const EditDept = ({ editingDebt }) => {
                   id="how-much"
                   value={howMuch}
                   onChange={handleHowMuchChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="how-much" className="col-form-label">
+                  Date
+                </label>
+                <input
+                  type="date"
+                  min="0"
+                  step="0.01"
+                  className="form-control"
+                  id="date"
+                  value={date}
+                  onChange={handleDateChange}
                   required
                 />
               </div>

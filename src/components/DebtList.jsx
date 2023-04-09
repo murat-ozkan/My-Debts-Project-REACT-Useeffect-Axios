@@ -38,7 +38,10 @@ const DebtList = ({ debts, getDebts }) => {
               To Whom
             </th>
             <th scope="col" className="text-center text-warning">
-              How Much{" "}
+              How Much
+            </th>
+            <th scope="col" className="text-center text-warning">
+              Date
             </th>
             <th scope="col" className="text-center text-warning">
               Edit
@@ -47,7 +50,7 @@ const DebtList = ({ debts, getDebts }) => {
         </thead>
         <tbody>
           {debts?.map((item) => {
-            const { id, toWhom, howMuch } = item;
+            const { id, toWhom, howMuch, date } = item;
             return (
               <tr key={id}>
                 <th className="text-center text-white">{id}</th>
@@ -55,6 +58,7 @@ const DebtList = ({ debts, getDebts }) => {
                 <td className="text-center text-white">
                   ₺{howMuch.toLocaleString()}
                 </td>
+                <td className="text-center text-white">{date}</td>
                 <td className="text-center text-nowrap text-white">
                   <FaEdit
                     size={30}
@@ -92,7 +96,7 @@ const DebtList = ({ debts, getDebts }) => {
           </tr>
         </tfoot>
       </table>
-      <EditDept editingDebt={editingDebt}/>
+      <EditDept editingDebt={editingDebt} />
     </div>
   );
 };
