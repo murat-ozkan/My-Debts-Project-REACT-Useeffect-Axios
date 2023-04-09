@@ -14,7 +14,7 @@ const AddDebt = ({ getDebts }) => {
     postData(newDebt);
     setToWhom("");
     setHowMuch("");
-    setDate("")
+    setDate("");
   };
 
   const postData = async (newDebt) => {
@@ -29,7 +29,7 @@ const AddDebt = ({ getDebts }) => {
   return (
     <div className="container text-center mt-4">
       <h1 className="display-6 text-danger font-weight-bold mb-4">
-        Add Your Debt
+        Debt Tracker
       </h1>
       <form onSubmit={handleSubmit}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
