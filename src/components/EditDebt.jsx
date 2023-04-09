@@ -1,25 +1,93 @@
-const EditDept = () => {
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+const EditDept = ({ editingDebt }) => {
+  const BASE_URL = "https://6429dbc900dfa3b5473ba802.mockapi.io/mydebts";
+
+  const [toWhom, setToWhom] = useState("");
+  const [howMuch, setHowMuch] = useState("");
+
+  useEffect(() => {
+    if (editingDebt) {
+      console.log(editingDebt.toWhom);
+      setToWhom(editingDebt.toWhom);
+      setHowMuch(editingDebt.howMuch);
+    }
+  }, [editingDebt]);
+
+  const handleToWhomChange = (event) => {
+    setToWhom(event.target.value);
+  };
+
+  const handleHowMuchChange = (event) => {
+    setHowMuch(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      if (editingDebt) {
+        await axios.put(`${BASE_URL}/${editingDebt.id}`, {
+          toWhom,
+          howMuch,
+        });
+      } else {
+        await axios.post(BASE_URL, {
+          toWhom,
+          howMuch,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    window.location.reload();
+  };
+
   return (
-    <>
-      <div className="modal" tabIndex={-1} role="dialog" id="editDebt">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Modal title</h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
+    <div className="modal fade" id="editDebt" tabIndex="-1">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">Edit Debt</h5>
+            <button
+              type="button"
+              className="btn-close"
+              data-dismiss="modal"
+            ></button>
+          </div>
+          <form onSubmit={handleSubmit}>
             <div className="modal-body">
-              <p>Modal body text goes here.</p>
+              <div className="mb-3">
+                <label htmlFor="to-whom" className="col-form-label">
+                  To Whom:
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="to-whom"
+                  value={toWhom}
+                  onChange={handleToWhomChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="how-much" className="col-form-label">
+                  How Much:
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  className="form-control"
+                  id="how-much"
+                  value={howMuch}
+                  onChange={handleHowMuchChange}
+                  required
+                />
+              </div>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary">
                 Save changes
               </button>
               <button
@@ -30,10 +98,10 @@ const EditDept = () => {
                 Close
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

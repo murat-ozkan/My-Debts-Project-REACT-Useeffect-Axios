@@ -27,7 +27,7 @@ const Home = () => {
     <>
       <AddDebt getDebts={getDebts} />
       <DebtList getDebts={getDebts} debts={debts} />
-      <EditDept />
+      <EditDept debts={debts}/>
     </>
   );
 };

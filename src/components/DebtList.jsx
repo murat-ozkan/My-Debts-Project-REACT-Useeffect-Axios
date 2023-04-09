@@ -2,9 +2,12 @@ import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
 import EditDept from "./EditDebt";
+import { useState } from "react";
 
 const DebtList = ({ debts, getDebts }) => {
   const BASE_URL = "https://6429dbc900dfa3b5473ba802.mockapi.io/mydebts";
+
+  const [editingDebt, setEditingDebt] = useState(null);
 
   const deleteDebt = async (id) => {
     try {
@@ -18,6 +21,10 @@ const DebtList = ({ debts, getDebts }) => {
   const totalDebt = debts.reduce((acc, curr) => acc + Number(curr.howMuch), 0);
   //! The reduce function takes an accumulator (acc) and the current item (curr)
   //! and adds the howMuch value of the current item to the accumulator.
+
+  const handleEditClick = (debt) => {
+    setEditingDebt(debt);
+  };
 
   return (
     <div className="container mt-4">
@@ -55,6 +62,7 @@ const DebtList = ({ debts, getDebts }) => {
                     className="me-2 text-warning"
                     data-toggle="modal"
                     data-target="#editDebt"
+                    onClick={() => handleEditClick(item)}
                   />
                   <AiFillDelete
                     size={30}
@@ -72,19 +80,19 @@ const DebtList = ({ debts, getDebts }) => {
             <td
               colSpan="2"
               className="text-center text-danger"
-              style={{ fontSize: "1.2em" }}
+              style={{ fontSize: "1.4em" }}
             >
               <b>Total Debt:</b>
             </td>
 
-            <td className="text-center text-danger">
+            <td className="text-center text-danger h4">
               <b>₺{totalDebt.toLocaleString()}</b>
             </td>
             <td></td>
           </tr>
         </tfoot>
       </table>
-      <EditDept />
+      <EditDept editingDebt={editingDebt}/>
     </div>
   );
 };
