@@ -31,19 +31,19 @@ const DebtList = ({ debts, getDebts }) => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th scope="col" className="text-center text-warning">
+            <th scope="col" className="text-center text-warning h4">
               #No
             </th>
-            <th scope="col" className="text-center text-warning">
+            <th scope="col" className="text-center text-warning h4">
               To Whom
             </th>
-            <th scope="col" className="text-center text-warning">
+            <th scope="col" className="text-center text-warning h4">
               How Much
             </th>
-            <th scope="col" className="text-center text-warning">
+            <th scope="col" className="text-center text-warning h4">
               Date
             </th>
-            <th scope="col" className="text-center text-warning">
+            <th scope="col" className="text-center text-warning h4">
               Edit
             </th>
           </tr>

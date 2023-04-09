@@ -66,7 +66,7 @@ const AddDebt = ({ getDebts }) => {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-danger mb-2 my-4">
+        <button type="submit" className="btn btn-danger mb-4 my-4">
           Add to the Debts
         </button>
       </form>
